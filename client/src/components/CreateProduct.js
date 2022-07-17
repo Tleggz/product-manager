@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const CreateProduct = (props) => {
+    const { productList, setProductList } = props;
 
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
@@ -9,22 +10,25 @@ const CreateProduct = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8000/api/product", {
-            title,
-            price,
-            description
-    })
-    .then(res => {
-        console.log(res);
-        console.log(res.data);
-        setTitle("");
-        setPrice("");
-        setDescription("");
-    })
-    .catch((err) =>{
-        console.log(err);
-    })
-    }
+
+        axios
+            .post("http://localhost:8000/api/products", {
+                title,
+                price,
+                description,
+            })
+            .then((res) => {
+                console.log(res);
+                console.log(res.data);
+                setProductList([...productList, res.data]);
+                setTitle("");
+                setPrice("");
+                setDescription("");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     return (
         <div>
