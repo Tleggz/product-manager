@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const Product = require("../models/product.model.js"); 
 
 module.exports = {
@@ -33,4 +34,14 @@ module.exports = {
             .then((deletedId) => res.json(deletedId))
             .catch((err) => console.log(err));
     }
+=======
+const Product = require('../models/product.model.js');
+
+module.exports = {
+    createProduct: (req, res) => {
+        Product.create(req.body)
+            .then(newProduct => res.json(newProduct))
+            .catch((err) => console.log(err));
+    }
+>>>>>>> 0f6c36f6d0c398af33856cf659c1fbf17588c789
 };
